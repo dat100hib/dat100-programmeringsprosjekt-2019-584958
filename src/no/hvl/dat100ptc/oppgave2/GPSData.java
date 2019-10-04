@@ -9,12 +9,9 @@ public class GPSData {
 	protected int antall = 0;
 
 	public GPSData(int antall) {
-
-		// TODO - START
-		
-		throw new UnsupportedOperationException(TODO.construtor("GPSData"));
-
-		// TODO - SLUTT
+		//Setter antall 0 og lager et objekt for GPSPoints i tabellen gpspoints.
+		this.antall=0;
+		gpspoints= new GPSPoint[antall];
 	}
 
 	public GPSPoint[] getGPSPoints() {
@@ -24,12 +21,15 @@ public class GPSData {
 	protected boolean insertGPS(GPSPoint gpspoint) {
 
 		boolean inserted = false;
-
-		// TODO - START
-		
-		throw new UnsupportedOperationException(TODO.method());
-
-		// TODO - SLUTT
+		//Hvis antall er større enn lengden på tabellen vil den ikke sette 
+		//noe inn i den. Setter gpspoint inn i tabellen på gitt plass lik antall.
+		//inkrementerer antall, slik at neste gpspoint blir satt i riktig pos.
+		if (gpspoints.length>antall) {
+			gpspoints[antall]= gpspoint;
+			antall++;
+			inserted=true;
+		}
+		return inserted;
 	}
 
 	public boolean insert(String time, String latitude, String longitude, String elevation) {
