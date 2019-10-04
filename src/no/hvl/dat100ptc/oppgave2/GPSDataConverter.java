@@ -61,7 +61,5 @@ public class GPSDataConverter {
 		GPSPoint gpspoint=new GPSPoint(toSeconds(timeStr), Double.parseDouble(latitudeStr),
 				Double.parseDouble(longitudeStr) , Double.parseDouble(elevationStr));
 		return gpspoint;
-	    
 	}
-	
 }
