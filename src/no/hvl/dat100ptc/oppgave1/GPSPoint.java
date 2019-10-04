@@ -14,12 +14,13 @@ public class GPSPoint {
 	this.latitude=latitude;
 	this.elevation=elevation;
 	this.longitude=longitude;
+	this.time=time;
 
 	}
 
 	public int getTime() {
 		
-		return time;
+		return this.time;
 		
 	}
 
@@ -52,14 +53,10 @@ public class GPSPoint {
 	}
 	
 	public String toString() {
-		
 		String str;
-		
-		// TODO - start
-
-		throw new UnsupportedOperationException(TODO.method());
-
-		// TODO - slutt
+		str= (this.time + " (" + this.latitude + "," + this.longitude+") " + this.elevation + "\n");
+		System.out.println(str);
+		return str;
 		
 	}
 }

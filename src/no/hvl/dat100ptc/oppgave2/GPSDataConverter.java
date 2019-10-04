@@ -1,5 +1,7 @@
 package no.hvl.dat100ptc.oppgave2;
 
+import java.util.Arrays;
+
 import no.hvl.dat100ptc.TODO;
 import no.hvl.dat100ptc.oppgave1.GPSPoint;
 
@@ -14,16 +16,44 @@ public class GPSDataConverter {
 
 	public static int toSeconds(String timestr) {
 		
-		int secs;
+		int secs=0;
 		int hr, min, sec;
 		
-		// TODO
-		// OPPGAVE - START
+		//Setter hele Stringen inn i en ny String tabell.
+		String [] timeStrTab=timestr.split("");;
+		String [] timeStrNum= { 
+				timeStrTab[11],timeStrTab[12], //timer 
+				timeStrTab[14],timeStrTab[15], //minutter
+				timeStrTab[17],timeStrTab[18]  //sekunder
+		};
 		
-		throw new UnsupportedOperationException(TODO.method());
-
-		// OPPGAVE - SLUTT
+		//Skriver om tabell til Int timer.
+		if (timeStrNum[0].equals("0")) {
+			hr=Integer.parseInt(timeStrNum[1]);
+			secs+=(hr*60*60);
+		} else {
+			hr=Integer.parseInt(timeStrNum[0]+timeStrNum[1]);
+			secs+=(hr*60*60);
+		}
 		
+		//Skriver om tabell til Int minutter.
+		if (timeStrNum[2].equals("0")) {
+			min=Integer.parseInt(timeStrNum[3]);
+			secs+=(min*60);
+		} else {
+			min=Integer.parseInt(timeStrNum[2]+timeStrNum[3]);
+			secs+=(min*60);
+		}
+		
+		//Skriver om tabell til Int sekunder.
+		if (timeStrNum[4].equals("0")) {
+			sec=Integer.parseInt(timeStrNum[5]);
+			secs+=(sec);
+		} else {
+			sec=Integer.parseInt(timeStrNum[4]+timeStrNum[5]);
+			secs+=(sec);
+		}
+		return secs;
 	}
 
 	public static GPSPoint convert(String timeStr, String latitudeStr, String longitudeStr, String elevationStr) {
