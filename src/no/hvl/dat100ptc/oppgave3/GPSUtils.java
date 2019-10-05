@@ -1,7 +1,5 @@
 package no.hvl.dat100ptc.oppgave3;
 
-import java.util.ArrayList;
-
 import static java.lang.Math.*;
 
 import no.hvl.dat100ptc.TODO;
@@ -82,41 +80,56 @@ public class GPSUtils {
 	}
 
 	public static double speed(GPSPoint gpspoint1, GPSPoint gpspoint2) {
-
+		//
 		int secs;
 		double speed;
-
-		// TODO - START
-
-		throw new UnsupportedOperationException(TODO.method());
-
-		// TODO - SLUTT
-
+		secs=gpspoint2.getTime()-gpspoint1.getTime();
+		speed=(distance(gpspoint1,gpspoint2))/secs*3.6;
+		return speed;
 	}
 
 	public static String formatTime(int secs) {
 
 		String timestr;
 		String TIMESEP = ":";
-
-		// TODO - START
-
-		throw new UnsupportedOperationException(TODO.method());
 		
-		// TODO - SLUTT
+		int hh, mm, ss, rest;
+		String hhStr, mmStr, ssStr;
+		
+		hh=secs/3600;	
+		rest=secs%3600;
+		mm=rest/60;
+		rest=rest%60;
+		ss=rest;
+		//Skriver en if statement "one liner". 
+		//F.eks variabel = (statement) ?  true value : false value;
+		//hvis statement er sant vil variabel være lik true value.
+		//samme gjelder for false
+		
+		hhStr = hh < 10 ? ("0"+hh) : (""+hh);
+		mmStr = mm < 10 ? ("0"+mm) : (""+mm);
+		ssStr = ss < 10 ? ("0"+ss) : (""+ss);
+		
+		
+		timestr=hhStr+TIMESEP+mmStr+TIMESEP+ssStr;
+		
+		return String.format("%2s%s", "",timestr);
 
 	}
 	private static int TEXTWIDTH = 10;
 
 	public static String formatDouble(double d) {
 
+		//if funksjon som setter str lik et avrundet tall med to desimaler
+		//med x antall mellomrom forran tallet.
 		String str;
-
-		// TODO - START
-
-		throw new UnsupportedOperationException(TODO.method());
-
-		// TODO - SLUTT
+		str= d<10 ? (String.format("%6s%s", "",String.format("%.2f", d))) : (String.format("%5s%s", "",String.format("%.2f", d)));
 		
+		String [] strTab = str.split("");
+		strTab[str.indexOf(",")]=".";
+		str=String.join("", strTab);
+		System.out.println(str);
+		
+		return str;
 	}
 }
