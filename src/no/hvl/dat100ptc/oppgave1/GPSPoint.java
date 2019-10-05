@@ -51,7 +51,7 @@ public class GPSPoint {
 	public void setElevation(double elevation) {
 		this.elevation=elevation;
 	}
-	
+	//Lager en metode som tar et objekt og skriver verdiene til objektet som string.
 	public String toString() {
 		String str;
 		str= (this.time + " (" + this.latitude + "," + this.longitude+") " + this.elevation + "\n");

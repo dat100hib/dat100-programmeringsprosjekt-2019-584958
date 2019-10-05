@@ -31,7 +31,7 @@ public class GPSData {
 		}
 		return inserted;
 	}
-
+	//Lager definerer et nytt punkt som skal lagres i gpspoints tabellen og returnerer true hvis det skjer.
 	public boolean insert(String time, String latitude, String longitude, String elevation) {
 
 		GPSPoint gpspoint;
@@ -43,6 +43,7 @@ public class GPSData {
 		}
 	}
 
+	// Skriver ut verdiene til objektene i gpspoints ved hjelp av toString metoden til GPSPoint klassen.
 	public void print() {
 		
 		System.out.println("====== Konvertert GPS Data - START ======");
