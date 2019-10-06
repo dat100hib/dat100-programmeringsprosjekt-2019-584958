@@ -46,13 +46,6 @@ public class GPSUtils {
 			longitudes[i]=gpspoints[i].getLongitude();
 		}
 		return longitudes;
-		
-		/*
-		ArrayList<Double> longitudes = new ArrayList<>();
-		for (int i = 0; i < gpspoints.length; i++ ) {
-			longitudes.add(gpspoints[i].getLongitude());
-		}
-		*/
 	}
 
 	private static int R = 6371000; // jordens radius

@@ -116,31 +116,27 @@ public class GPSComputer {
 		
 		return kcal;
 	}
-
+//må snakke med folk på labben om hvorfor denne er feil.
 	public double totalKcal(double weight) {
 		double totalkcal = 0;
-		int time=0;
-		double speed1;
-		double [] speed = speeds();
-		for (int i=0; i<gpspoints.length-1; i++) {
-			gpspoints[i].getTime();
-			totalkcal+=kcal()
-		}
-		
-		
+		totalkcal = kcal(weight, totalTime(), averageSpeed());
+		return totalkcal;
 	}
 	
 	private static double WEIGHT = 80.0;
 	
 	public void displayStatistics() {
-
+		//usikker på det hvordan man skal gjøre det med kcal ettersom
+		//det ikke funker.
 		System.out.println("==============================================");
-
-		// TODO - START
-
-		throw new UnsupportedOperationException(TODO.method());
+		System.out.println("Total Time"+"\t"+":"+"\t"+ GPSUtils.formatTime(totalTime()));
+		System.out.println("Total distance"+"\t"+":"+"\t"+String.format("%.2f", totalDistance())+"km");
+		System.out.println("Total elevation"+"\t"+":"+"\t"+String.format("%.2f", totalElevation())+"m");
+		System.out.println("Max speed"+"\t"+":"+"\t"+String.format("%.2f", maxSpeed())+"km/t");
+		System.out.println("Average speed"+"\t"+":"+"\t"+String.format("%.2f", averageSpeed())+"km/t");
+		System.out.println("Energy"+"\t"+"\t"+":"+"\t"+String.format("%.2f", totalKcal(80))+"kcal");
+		System.out.println("==============================================");
 		
-		// TODO - SLUTT
 		
 	}
 
