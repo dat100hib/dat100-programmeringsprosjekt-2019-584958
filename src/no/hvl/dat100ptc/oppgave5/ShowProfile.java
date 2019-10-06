@@ -45,12 +45,23 @@ public class ShowProfile extends EasyGraphics {
 	public void showHeightProfile(int ybase) {
 
 		// ybase indicates the position on the y-axis where the columns should start
-		
-		// TODO - START
-
-		throw new UnsupportedOperationException(TODO.method());
-	
-		// TODO - SLUTT
+		//Gitt den startveri x for hvor den skal begynne fra venste. bredde paa soylene.
+		//mellomrom variablen er mellomrom mellom hver soyle.
+		//hoyden til soylen blir definert i for loopen. fyller hvert rektangel
+		//for hver soyle gitt punktet gpspoints[i].
+		int x = 10;
+		int bredde = 1;
+		int mellomrom = 2;
+		int hoyde = 0;
+		setColor(0, 0, 255);
+		for (int i = 0; i<gpspoints.length; i++) {
+			hoyde =(int) gpspoints[i].getElevation();
+			if (hoyde>0) {
+				fillRectangle(x,ybase-hoyde, bredde, hoyde);
+				x+=mellomrom;
+			} else {
+				
+			}
+		}
 	}
-
 }
