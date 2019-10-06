@@ -130,7 +130,7 @@ public class GPSComputer {
 		//det ikke funker.
 		System.out.println("==============================================");
 		System.out.println("Total Time"+"\t"+":"+"\t"+ GPSUtils.formatTime(totalTime()));
-		System.out.println("Total distance"+"\t"+":"+"\t"+String.format("%.2f", totalDistance())+"km");
+		System.out.println("Total distance"+"\t"+":"+"\t"+String.format("%.2f", totalDistance()/1000)+"km");
 		System.out.println("Total elevation"+"\t"+":"+"\t"+String.format("%.2f", totalElevation())+"m");
 		System.out.println("Max speed"+"\t"+":"+"\t"+String.format("%.2f", maxSpeed())+"km/t");
 		System.out.println("Average speed"+"\t"+":"+"\t"+String.format("%.2f", averageSpeed())+"km/t");
