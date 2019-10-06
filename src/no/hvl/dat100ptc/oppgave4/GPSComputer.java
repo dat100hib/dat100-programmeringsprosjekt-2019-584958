@@ -134,7 +134,7 @@ public class GPSComputer {
 		System.out.println("Total elevation"+"\t"+":"+"\t"+String.format("%.2f", totalElevation())+"m");
 		System.out.println("Max speed"+"\t"+":"+"\t"+String.format("%.2f", maxSpeed())+"km/t");
 		System.out.println("Average speed"+"\t"+":"+"\t"+String.format("%.2f", averageSpeed())+"km/t");
-		System.out.println("Energy"+"\t"+"\t"+":"+"\t"+String.format("%.2f", totalKcal(80))+"kcal");
+		System.out.println("Energy"+"\t"+"\t"+":"+"\t"+String.format("%.2f", totalKcal(WEIGHT))+"kcal");
 		System.out.println("==============================================");
 		
 		
