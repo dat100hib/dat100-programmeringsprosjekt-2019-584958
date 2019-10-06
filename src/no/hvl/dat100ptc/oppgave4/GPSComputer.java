@@ -9,7 +9,7 @@ import no.hvl.dat100ptc.oppgave3.GPSUtils;
 
 public class GPSComputer {
 	
-	private GPSPoint[] gpspoints;
+	private static GPSPoint[] gpspoints;
 	
 	public GPSComputer(String filename) {
 		GPSData gpsdata = GPSDataFileReader.readGPSFile(filename);
@@ -24,8 +24,11 @@ public class GPSComputer {
 		return this.gpspoints;
 	}
 	
+	//Gjorde de fleste av metodene under static for aa kunne referere til dem sener
+	//i prosjektet. Gjorde private static GPSPoint[] gpspoints; på linje 11 static.
+	
 	// bereger total distances (i meter)
-	public double totalDistance() {
+	public static double totalDistance() {
 		double distance = 0;
 		for (int i = 0; i<gpspoints.length-1; i++) {
 			distance += GPSUtils.distance(gpspoints[i], gpspoints[i+1]);
@@ -35,7 +38,7 @@ public class GPSComputer {
 	}
 
 	// beregner total høydemeter (i meter)
-	public double totalElevation() {
+	public static double totalElevation() {
 		//hvis det neste gps punktet er er mindre enn det første vil
 		//vi sette elevation lik den høyeste elevation til gps punktene.
 		double elevation = 0;
@@ -49,13 +52,13 @@ public class GPSComputer {
 	}
 
 	// beregner total tid for hele turen (i sekunder)
-	public int totalTime() {
+	public static int totalTime() {
 		//returnerer sluttid minus starttid for å får total tid.
 		return (gpspoints[gpspoints.length-1].getTime()-gpspoints[0].getTime());
 	}
 		
 	// beregner gjennomsnitshastighet mellom hver av gps punktene
-	public double[] speeds() {
+	public static double[] speeds() {
 		double [] speedsTab = new double [gpspoints.length-1];
 		for (int i = 0; i<gpspoints.length-1; i++) {
 			speedsTab[i]=GPSUtils.speed(gpspoints[i],gpspoints[i+1]);
@@ -63,7 +66,7 @@ public class GPSComputer {
 		return speedsTab;
 	}
 	
-	public double maxSpeed() {
+	public static double maxSpeed() {
 		double maxspeed = 0;
 		double [] speed = speeds();
 		for (int i = 0; i<speed.length; i++) {
@@ -72,7 +75,7 @@ public class GPSComputer {
 		return maxspeed;
 	}
 
-	public double averageSpeed() {
+	public static double averageSpeed() {
 		return totalDistance()/totalTime()*3.6;
 	}
 
@@ -89,7 +92,7 @@ public class GPSComputer {
 	public static double MS = 2.236936;
 
 	// beregn kcal gitt weight og tid der kjøres med en gitt hastighet
-	public double kcal(double weight, int secs, double speed) {
+	public static double kcal(double weight, int secs, double speed) {
 
 		double kcal;
 
@@ -117,7 +120,7 @@ public class GPSComputer {
 		return kcal;
 	}
 //må snakke med folk på labben om hvorfor denne er feil.
-	public double totalKcal(double weight) {
+	public static double totalKcal(double weight) {
 		double totalkcal = 0;
 		totalkcal = kcal(weight, totalTime(), averageSpeed());
 		return totalkcal;
@@ -129,7 +132,7 @@ public class GPSComputer {
 		//usikker på det hvordan man skal gjøre det med kcal ettersom
 		//det ikke funker.
 		System.out.println("==============================================");
-		System.out.println("Total Time"+"\t"+":"+"\t"+ GPSUtils.formatTime(totalTime()));
+		System.out.println("Total Time"+"\t"+":"+"     "+ GPSUtils.formatTime(totalTime()));
 		System.out.println("Total distance"+"\t"+":"+"\t"+String.format("%.2f", totalDistance()/1000)+"km");
 		System.out.println("Total elevation"+"\t"+":"+"\t"+String.format("%.2f", totalElevation())+"m");
 		System.out.println("Max speed"+"\t"+":"+"\t"+String.format("%.2f", maxSpeed())+"km/t");

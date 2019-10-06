@@ -15,8 +15,8 @@ public class ShowRoute extends EasyGraphics {
 	private static int MAPYSIZE = 400;
 
 	private GPSPoint[] gpspoints;
-	private GPSComputer gpscomputer;
-	
+	private static GPSComputer gpscomputer;
+	//Satt private GPSComputer gpscomputer; til static
 	public ShowRoute() {
 
 		String filename = JOptionPane.showInputDialog("GPS data filnavn: ");
@@ -38,7 +38,7 @@ public class ShowRoute extends EasyGraphics {
 
 		//playRoute(MARGIN + MAPYSIZE);
 		
-		//showStatistics();
+		showStatistics();
 	}
 
 	// antall x-pixels per lengdegrad
@@ -60,6 +60,8 @@ public class ShowRoute extends EasyGraphics {
 	}
 
 	public void showRouteMap(int ybase) {
+		//hvorfor har alle gpspoints[i] for getlongitude og getlatitude samme verdi?
+		//hva skal man bruke ystep og xstep til?
 		int diameter = 3;
 		setColor(0, 0, 255);
 		int MARGIN=80;
@@ -80,11 +82,15 @@ public class ShowRoute extends EasyGraphics {
 		setColor(0,0,0);
 		setFont("Courier",12);
 		
-		// TODO - START
+		drawString("=========================================",TEXTDISTANCE,20 );
+		drawString("Total Time"+"\t\t\t\t\t\t\t"+":"+ GPSUtils.formatTime(GPSComputer.totalTime()),TEXTDISTANCE,30 );
+		drawString("Total distance"+"\t\t\t"+":"+"\t\t"+String.format("%.2f", GPSComputer.totalDistance()/1000),TEXTDISTANCE,40 );
+		drawString("Total elevation"+"\t\t"+":"+"\t\t"+String.format("%.2f", GPSComputer.totalElevation()),TEXTDISTANCE,50 );
+		drawString("Max speed"+"\t\t\t\t\t\t\t\t"+":"+"\t\t"+String.format("%.2f", GPSComputer.maxSpeed()),TEXTDISTANCE,60 );
+		drawString("Average speed"+"\t\t\t\t"+":"+"\t\t"+String.format("%.2f", GPSComputer.averageSpeed())+"km/t",TEXTDISTANCE,70 );
+		drawString("Energy"+"\t\t\t\t\t\t\t\t\t\t\t"+":"+"\t\t"+String.format("%.2f", GPSComputer.totalKcal(80))+"kcal",TEXTDISTANCE,80 );
+		drawString("=========================================",TEXTDISTANCE,90 );
 		
-		throw new UnsupportedOperationException(TODO.method());
-		
-		// TODO - SLUTT;
 	}
 
 	public void playRoute(int ybase) {
