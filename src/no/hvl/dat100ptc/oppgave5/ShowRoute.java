@@ -11,8 +11,8 @@ import no.hvl.dat100ptc.oppgave4.GPSComputer;
 public class ShowRoute extends EasyGraphics {
 
 	private static int MARGIN = 50;
-	private static int MAPXSIZE = 800;
-	private static int MAPYSIZE = 800;
+	private static int MAPXSIZE = 400;
+	private static int MAPYSIZE = 400;
 
 	private GPSPoint[] gpspoints;
 	private GPSComputer gpscomputer;
@@ -33,12 +33,12 @@ public class ShowRoute extends EasyGraphics {
 	public void run() {
 
 		makeWindow("Route", MAPXSIZE + 2 * MARGIN, MAPYSIZE + 2 * MARGIN);
-
+		
 		showRouteMap(MARGIN + MAPYSIZE);
 
-		playRoute(MARGIN + MAPYSIZE);
+		//playRoute(MARGIN + MAPYSIZE);
 		
-		showStatistics();
+		//showStatistics();
 	}
 
 	// antall x-pixels per lengdegrad
@@ -52,8 +52,8 @@ public class ShowRoute extends EasyGraphics {
 
 	// antall y-pixels per breddegrad
 	public double ystep() {
-		double maxlat = GPSUtils.findMax(GPSUtils.getLongitudes(gpspoints));
-		double minlat = GPSUtils.findMin(GPSUtils.getLongitudes(gpspoints));
+		double maxlat = GPSUtils.findMax(GPSUtils.getLatitudes(gpspoints));
+		double minlat = GPSUtils.findMin(GPSUtils.getLatitudes(gpspoints));
 	
 		double ystep = MAPYSIZE / (Math.abs(maxlat - minlat)); 
 		return ystep;
@@ -62,7 +62,15 @@ public class ShowRoute extends EasyGraphics {
 	public void showRouteMap(int ybase) {
 		int diameter = 3;
 		setColor(0, 0, 255);
-		fillCircle((int)xstep(),(int)ystep()-ybase, diameter);
+		int MARGIN=80;
+		int x,y;
+		for (int i = 0; i<gpspoints.length; i++) {
+			x=(int)gpspoints[i].getLongitude()+MARGIN;
+			y=(int)gpspoints[i].getLatitude();
+			
+			fillCircle(x,ybase-y, diameter);
+		}
+		
 	}
 
 	public void showStatistics() {
