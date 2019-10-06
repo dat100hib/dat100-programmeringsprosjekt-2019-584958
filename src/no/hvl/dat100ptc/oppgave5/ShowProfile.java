@@ -49,7 +49,7 @@ public class ShowProfile extends EasyGraphics {
 		//mellomrom variablen er mellomrom mellom hver soyle.
 		//hoyden til soylen blir definert i for loopen. fyller hvert rektangel
 		//for hver soyle gitt punktet gpspoints[i].
-		int x = 10;
+		int x = MARGIN;
 		int bredde = 1;
 		int mellomrom = 2;
 		int hoyde = 0;

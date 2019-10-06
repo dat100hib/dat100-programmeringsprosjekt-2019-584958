@@ -50,14 +50,14 @@ public class ShowSpeed extends EasyGraphics {
 		System.out.println("Angi tidsskalering i tegnevinduet ...");
 		int timescaling = Integer.parseInt(getText("Tidsskalering"));
 				
-		int x = 10;
-		int xAv=10;
+		int x = MARGIN;
+		int xAv = MARGIN;
 		int bredde = 1;
-		int breddeAv=N;
+		int breddeAv = N;
 		int hoydeAv = 2;
 		int mellomrom = 2;
 		int hoyde = 0;
-		int averageSpeed=0;
+		int averageSpeed = 0;
 		for (int i = 0; i<N; i++) {
 			hoyde =(int) GPSUtils.speed(gpspoints[i], gpspoints[i+1]);
 			averageSpeed+=hoyde;
@@ -67,8 +67,8 @@ public class ShowSpeed extends EasyGraphics {
 				x+=mellomrom;
 			}
 		}
-		breddeAv=x-xAv;
-		averageSpeed=(int)((averageSpeed/N)+0.5);
+		breddeAv = x-xAv;
+		averageSpeed = (int)((averageSpeed/N)+0.5);
 		setColor(0,100,100);
 		fillRectangle(xAv,ybase-averageSpeed, breddeAv , hoydeAv);
 	}

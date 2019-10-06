@@ -43,35 +43,26 @@ public class ShowRoute extends EasyGraphics {
 
 	// antall x-pixels per lengdegrad
 	public double xstep() {
-
 		double maxlon = GPSUtils.findMax(GPSUtils.getLongitudes(gpspoints));
 		double minlon = GPSUtils.findMin(GPSUtils.getLongitudes(gpspoints));
 
 		double xstep = MAPXSIZE / (Math.abs(maxlon - minlon)); 
-
 		return xstep;
 	}
 
 	// antall y-pixels per breddegrad
 	public double ystep() {
+		double maxlat = GPSUtils.findMax(GPSUtils.getLongitudes(gpspoints));
+		double minlat = GPSUtils.findMin(GPSUtils.getLongitudes(gpspoints));
 	
-		double ystep;
-		
-		// TODO - START
-		
-		throw new UnsupportedOperationException(TODO.method());
-
-		// TODO - SLUTT
-		
+		double ystep = MAPYSIZE / (Math.abs(maxlat - minlat)); 
+		return ystep;
 	}
 
 	public void showRouteMap(int ybase) {
-
-		// TODO - START
-		
-		throw new UnsupportedOperationException(TODO.method());
-		
-		// TODO - SLUTT
+		int diameter = 3;
+		setColor(0, 0, 255);
+		fillCircle((int)xstep(),(int)ystep()-ybase, diameter);
 	}
 
 	public void showStatistics() {
