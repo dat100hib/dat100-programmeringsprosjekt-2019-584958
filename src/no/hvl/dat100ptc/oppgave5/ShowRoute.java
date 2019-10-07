@@ -74,19 +74,35 @@ public class ShowRoute extends EasyGraphics {
 		
 		
 		for (int i = 0; i<gpspoints.length; i++) {
-			x=(int)((maxlon*(gpspoints[i].getLongitude()-minlon)/MAPXSIZE*xstep()));
-			y=(int)(maxlat*(gpspoints[i].getLatitude()-minlat)/MAPYSIZE*ystep());
-			//System.out.println("Dette er x: "+x);
-			System.out.println("Dette er y: "+y);
+			//Finner ut av hvilke inkrementer som må ganges til den x verdien og y verdein
+			//slik at de er innenfor bildet på 800 * 800.
+			int inkrementX=100;
+			while ((((maxlon*(maxlon-minlon)/MAPXSIZE*xstep())+MARGIN)*inkrementX)<MAPXSIZE) {
+				inkrementX-=1;
+			}
+			int inkrementY=100;
+			while ((500-(maxlat*(maxlat-minlat)/MAPYSIZE*ystep())*inkrementY)<MAPYSIZE) {
+				inkrementY-=1;
+			}
+			//Finner x og y verdi gjennom å gange høyseste verdi for punktet med latituden i punktet
+			//minus laveste punkt for å ha en null verdi. Resten var for å få det interaktivt og ganget med inkrement.
+			x=(int)((maxlon*(gpspoints[i].getLongitude()-minlon)/MAPXSIZE*xstep())*inkrementX);
+			y=(int)((maxlat*(gpspoints[i].getLatitude()-minlat)/MAPYSIZE*ystep()*inkrementY));
+			
+			//når man begynner og slutter reisen får man en blå dott. Når man går oppover
+			//skriver man ut en grønn sirkel og en rød når man går nedover.
+			
 			if (i==0) { 
+				setColor(0,0,255);
+			} else if (i==gpspoints.length-1) {
+				setColor(0,0,255);
+			} else if (gpspoints[i].getElevation()>=gpspoints[i-1].getElevation() && i>0 && i!=gpspoints.length) {
 				setColor(0,255,0);
-			} else if (gpspoints[i].getElevation()>=gpspoints[i-1].getElevation() && i>0) {
-				setColor(0,255,0);
-			} else {
+			} else if (gpspoints[i].getElevation()<gpspoints[i-1].getElevation() && i>0 && i!=gpspoints.length){
 				setColor(255,0,0);
 			}
 			
-			fillCircle(x+MARGIN,540-y, diameter);
+			fillCircle(x+MARGIN,200-y, diameter);
 		}
 		
 	}
@@ -100,11 +116,11 @@ public class ShowRoute extends EasyGraphics {
 		
 		drawString("=========================================",TEXTDISTANCE,20 );
 		drawString("Total Time"+"\t\t\t\t\t\t\t"+":"+ GPSUtils.formatTime(GPSComputer.totalTime()),TEXTDISTANCE,30 );
-		drawString("Total distance"+"\t\t\t"+":"+"\t\t"+String.format("%.2f", GPSComputer.totalDistance()/1000),TEXTDISTANCE,40 );
-		drawString("Total elevation"+"\t\t"+":"+"\t\t"+String.format("%.2f", GPSComputer.totalElevation()),TEXTDISTANCE,50 );
-		drawString("Max speed"+"\t\t\t\t\t\t\t\t"+":"+"\t\t"+String.format("%.2f", GPSComputer.maxSpeed()),TEXTDISTANCE,60 );
-		drawString("Average speed"+"\t\t\t\t"+":"+"\t\t"+String.format("%.2f", GPSComputer.averageSpeed())+"km/t",TEXTDISTANCE,70 );
-		drawString("Energy"+"\t\t\t\t\t\t\t\t\t\t\t"+":"+"\t\t"+String.format("%.2f", GPSComputer.totalKcal(80))+"kcal",TEXTDISTANCE,80 );
+		drawString("Total distance"+"\t\t\t"+":"+"\t\t"+String.format("%.2f", GPSComputer.totalDistance()/1000)+" m",TEXTDISTANCE,40 );
+		drawString("Total elevation"+"\t\t"+":"+"\t\t"+String.format("%.2f", GPSComputer.totalElevation())+" m",TEXTDISTANCE,50 );
+		drawString("Max speed"+"\t\t\t\t\t\t\t\t"+":"+"\t\t"+String.format("%.2f", GPSComputer.maxSpeed())+" km/t",TEXTDISTANCE,60 );
+		drawString("Average speed"+"\t\t\t\t"+":"+"\t\t"+String.format("%.2f", GPSComputer.averageSpeed())+" km/t",TEXTDISTANCE,70 );
+		drawString("Energy"+"\t\t\t\t\t\t\t\t\t\t\t"+":"+"\t\t"+String.format("%.2f", GPSComputer.totalKcal(80))+" kcal",TEXTDISTANCE,80 );
 		drawString("=========================================",TEXTDISTANCE,90 );
 		
 	}
