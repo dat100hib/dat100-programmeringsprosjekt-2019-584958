@@ -59,29 +59,34 @@ public class ShowRoute extends EasyGraphics {
 
 	public void showRouteMap(int ybase) {
 		//hva skal man bruke ystep og xstep til?
-		//System.out.println(ybase);
 		int diameter = 3;
 		int MARGIN=80;
 		int x,y;
 		
 		//ystep();
 		
+		
 		double minlat = GPSUtils.findMin(GPSUtils.getLatitudes(gpspoints));
 		double maxlat = GPSUtils.findMax(GPSUtils.getLatitudes(gpspoints));
 		
 		double maxlon = GPSUtils.findMax(GPSUtils.getLongitudes(gpspoints));
 		double minlon = GPSUtils.findMin(GPSUtils.getLongitudes(gpspoints));
-
+		
 		
 		for (int i = 0; i<gpspoints.length; i++) {
-			x=(int)(maxlon*(gpspoints[i].getLongitude()-minlon)*1000);
-			y=(int)(maxlat*(gpspoints[i].getLatitude()-minlat)*210);
+			x=(int)((maxlon*(gpspoints[i].getLongitude()-minlon)/MAPXSIZE*xstep()));
+			y=(int)(maxlat*(gpspoints[i].getLatitude()-minlat)/MAPYSIZE*ystep());
+			//System.out.println("Dette er x: "+x);
+			System.out.println("Dette er y: "+y);
+			if (i==0) { 
+				setColor(0,255,0);
+			} else if (gpspoints[i].getElevation()>=gpspoints[i-1].getElevation() && i>0) {
+				setColor(0,255,0);
+			} else {
+				setColor(255,0,0);
+			}
 			
-			//if (gpspoints[i].getElevation()>gpspoints[i-1].getElevation()) {
-				
-			//}
-			setColor(0,0,255);
-			fillCircle(x,540-y, diameter);
+			fillCircle(x+MARGIN,540-y, diameter);
 		}
 		
 	}
