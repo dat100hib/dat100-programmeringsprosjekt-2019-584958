@@ -11,8 +11,8 @@ import no.hvl.dat100ptc.oppgave4.GPSComputer;
 public class ShowRoute extends EasyGraphics {
 
 	private static int MARGIN = 50;
-	private static int MAPXSIZE = 400;
-	private static int MAPYSIZE = 400;
+	private static int MAPXSIZE = 800;
+	private static int MAPYSIZE = 800;
 
 	private GPSPoint[] gpspoints;
 	private static GPSComputer gpscomputer;
@@ -45,7 +45,6 @@ public class ShowRoute extends EasyGraphics {
 	public double xstep() {
 		double maxlon = GPSUtils.findMax(GPSUtils.getLongitudes(gpspoints));
 		double minlon = GPSUtils.findMin(GPSUtils.getLongitudes(gpspoints));
-
 		double xstep = MAPXSIZE / (Math.abs(maxlon - minlon)); 
 		return xstep;
 	}
@@ -54,23 +53,35 @@ public class ShowRoute extends EasyGraphics {
 	public double ystep() {
 		double maxlat = GPSUtils.findMax(GPSUtils.getLatitudes(gpspoints));
 		double minlat = GPSUtils.findMin(GPSUtils.getLatitudes(gpspoints));
-	
 		double ystep = MAPYSIZE / (Math.abs(maxlat - minlat)); 
 		return ystep;
 	}
 
 	public void showRouteMap(int ybase) {
-		//hvorfor har alle gpspoints[i] for getlongitude og getlatitude samme verdi?
 		//hva skal man bruke ystep og xstep til?
+		//System.out.println(ybase);
 		int diameter = 3;
-		setColor(0, 0, 255);
 		int MARGIN=80;
 		int x,y;
+		
+		//ystep();
+		
+		double minlat = GPSUtils.findMin(GPSUtils.getLatitudes(gpspoints));
+		double maxlat = GPSUtils.findMax(GPSUtils.getLatitudes(gpspoints));
+		
+		double maxlon = GPSUtils.findMax(GPSUtils.getLongitudes(gpspoints));
+		double minlon = GPSUtils.findMin(GPSUtils.getLongitudes(gpspoints));
+
+		
 		for (int i = 0; i<gpspoints.length; i++) {
-			x=(int)gpspoints[i].getLongitude()+MARGIN;
-			y=(int)gpspoints[i].getLatitude();
+			x=(int)(maxlon*(gpspoints[i].getLongitude()-minlon)*1000);
+			y=(int)(maxlat*(gpspoints[i].getLatitude()-minlat)*210);
 			
-			fillCircle(x,ybase-y, diameter);
+			//if (gpspoints[i].getElevation()>gpspoints[i-1].getElevation()) {
+				
+			//}
+			setColor(0,0,255);
+			fillCircle(x,540-y, diameter);
 		}
 		
 	}
