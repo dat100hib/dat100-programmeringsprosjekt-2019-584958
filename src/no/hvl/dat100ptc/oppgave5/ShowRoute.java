@@ -116,7 +116,7 @@ public class ShowRoute extends EasyGraphics {
 		
 		drawString("=========================================",TEXTDISTANCE,20 );
 		drawString("Total Time"+"\t\t\t\t\t\t\t"+":"+ GPSUtils.formatTime(GPSComputer.totalTime()),TEXTDISTANCE,30 );
-		drawString("Total distance"+"\t\t\t"+":"+"\t\t"+String.format("%.2f", GPSComputer.totalDistance()/1000)+" m",TEXTDISTANCE,40 );
+		drawString("Total distance"+"\t\t\t"+":"+"\t\t"+String.format("%.2f", GPSComputer.totalDistance()/1000)+" km",TEXTDISTANCE,40 );
 		drawString("Total elevation"+"\t\t"+":"+"\t\t"+String.format("%.2f", GPSComputer.totalElevation())+" m",TEXTDISTANCE,50 );
 		drawString("Max speed"+"\t\t\t\t\t\t\t\t"+":"+"\t\t"+String.format("%.2f", GPSComputer.maxSpeed())+" km/t",TEXTDISTANCE,60 );
 		drawString("Average speed"+"\t\t\t\t"+":"+"\t\t"+String.format("%.2f", GPSComputer.averageSpeed())+" km/t",TEXTDISTANCE,70 );
