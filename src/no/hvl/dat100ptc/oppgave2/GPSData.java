@@ -36,11 +36,8 @@ public class GPSData {
 
 		GPSPoint gpspoint;
 		gpspoint= GPSDataConverter.convert(time, latitude, longitude, elevation);
-		if (insertGPS(gpspoint)) {
-			return true;
-		}else {
-			return false;
-		}
+		return insertGPS(gpspoint);
+	
 	}
 
 	// Skriver ut verdiene til objektene i gpspoints ved hjelp av toString metoden til GPSPoint klassen.

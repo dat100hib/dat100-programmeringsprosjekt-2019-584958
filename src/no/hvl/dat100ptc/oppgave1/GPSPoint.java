@@ -53,8 +53,7 @@ public class GPSPoint {
 	}
 	//Lager en metode som tar et objekt og skriver verdiene til objektet som string.
 	public String toString() {
-		String str;
-		str= (this.time + " (" + this.latitude + "," + this.longitude+") " + this.elevation + "\n");
+		String str= (this.time + " (" + this.latitude + "," + this.longitude+") " + this.elevation + "\n");
 		return str;
 		
 	}

@@ -7,12 +7,8 @@ import no.hvl.dat100ptc.oppgave1.GPSPoint;
 
 public class GPSDataConverter {
 
-	// konverter tidsinformasjon i gps data punkt til antall sekunder fra midnatt
-	// dvs. ignorer information om dato og omregn tidspunkt til sekunder
-	// Eksempel - tidsinformasjon (som String): 2017-08-13T08:52:26.000Z
-    // skal omregnes til sekunder (som int): 8 * 60 * 60 + 52 * 60 + 26 
-	
-	private static int TIME_STARTINDEX = 11; // startindex for tidspunkt i timestr
+	// 2017-08-13T08:52:26.000Z
+	// [2,0,1,7,-,0,8,....0,0,0,Z]
 
 	public static int toSeconds(String timestr) {
 		
@@ -20,7 +16,7 @@ public class GPSDataConverter {
 		int hr, min, sec;
 		
 		//Setter hele Stringen inn i en ny String tabell.
-		String [] timeStrTab=timestr.split("");;
+		String [] timeStrTab=timestr.split("");
 		String [] timeStrNum= { 
 				timeStrTab[11],timeStrTab[12], //timer 
 				timeStrTab[14],timeStrTab[15], //minutter
@@ -30,10 +26,10 @@ public class GPSDataConverter {
 		//Skriver om tabell til Int timer.
 		if (timeStrNum[0].equals("0")) {
 			hr=Integer.parseInt(timeStrNum[1]);
-			secs+=(hr*60*60);
+			secs+=(hr*3600);
 		} else {
 			hr=Integer.parseInt(timeStrNum[0]+timeStrNum[1]);
-			secs+=(hr*60*60);
+			secs+=(hr*3600);
 		}
 		
 		//Skriver om tabell til Int minutter.

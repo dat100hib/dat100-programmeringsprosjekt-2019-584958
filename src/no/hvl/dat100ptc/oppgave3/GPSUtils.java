@@ -9,16 +9,11 @@ public class GPSUtils {
 
 	public static double findMax(double[] da) {
 
-		double max; 
-		
-		max = da[0];
+		double max = da[0];
 		
 		for (double d : da) {
-			if (d > max) {
-				max = d;
-			}
+			max = Math.max(max, d);
 		}
-		
 		return max;
 	}
 
