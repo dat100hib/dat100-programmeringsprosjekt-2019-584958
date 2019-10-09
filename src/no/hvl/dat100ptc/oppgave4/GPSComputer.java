@@ -121,9 +121,7 @@ public class GPSComputer {
 	}
 //må snakke med folk på labben om hvorfor denne er feil.
 	public static double totalKcal(double weight) {
-		double totalkcal = 0;
-		totalkcal = kcal(weight, totalTime(), averageSpeed());
-		return totalkcal;
+		return kcal(weight, totalTime(), averageSpeed());
 	}
 	
 	private static double WEIGHT = 80.0;
