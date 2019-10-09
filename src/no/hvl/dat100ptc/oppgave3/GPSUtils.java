@@ -47,28 +47,26 @@ public class GPSUtils {
 
 	public static double distance(GPSPoint gpspoint1, GPSPoint gpspoint2) {
 
-		double d;
 		double latitude1, longitude1, latitude2, longitude2;
 		
 		//finner verdiene for hvert punkt.
-		latitude1=gpspoint1.getLatitude();
-		latitude2=gpspoint2.getLatitude();
-		longitude1=gpspoint1.getLongitude();
-		longitude2=gpspoint2.getLongitude();
+		latitude1=Math.toRadians(gpspoint1.getLatitude());
+		latitude2=Math.toRadians(gpspoint2.getLatitude());
+		longitude1=Math.toRadians(gpspoint1.getLongitude());
+		longitude2=Math.toRadians(gpspoint2.getLongitude());
 		
 		//regner ut og returnerer d ved bruk av Haversine-formlen
 				
-		double deltaLatitude = Math.toRadians(latitude2) - Math.toRadians(latitude1);
-		double deltaLongitude =  Math.toRadians(longitude2)- Math.toRadians(longitude1);
+		double deltaLatitude = latitude2 - latitude1;
+		double deltaLongitude = longitude2- longitude1;
 		
-		double a = Math.pow((Math.sin(deltaLatitude/2)), 2) + Math.cos(Math.toRadians(latitude1)) * Math.cos(Math.toRadians(latitude2)) * Math.pow(Math.sin(deltaLongitude/2), 2);
+		double a = Math.pow((Math.sin(deltaLatitude/2)), 2) + Math.cos(latitude1) * Math.cos(latitude2) * Math.pow(Math.sin(deltaLongitude/2), 2);
 		double c = 2*Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
-		return d=R*c;
+		return R*c;
 		
 	}
 
 	public static double speed(GPSPoint gpspoint1, GPSPoint gpspoint2) {
-		//
 		int secs;
 		double speed;
 		secs=gpspoint2.getTime()-gpspoint1.getTime();
@@ -110,13 +108,10 @@ public class GPSUtils {
 
 		//if funksjon som setter str lik et avrundet tall med to desimaler
 		//med x antall mellomrom forran tallet.
-		String str;
-		str= d<10 ? (String.format("%6s%s", "",String.format("%.2f", d))) : (String.format("%5s%s", "",String.format("%.2f", d)));
-		
+		String str = String.format("%1$10.2f", d);		
 		String [] strTab = str.split("");
 		strTab[str.indexOf(",")]=".";
 		str=String.join("", strTab);
-		System.out.println(str);
 		
 		return str;
 	}
