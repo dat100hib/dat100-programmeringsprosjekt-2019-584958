@@ -9,6 +9,7 @@ import no.hvl.dat100ptc.oppgave2.GPSData;
 import no.hvl.dat100ptc.oppgave2.GPSDataFileReader;
 import no.hvl.dat100ptc.oppgave3.GPSUtils;
 import no.hvl.dat100ptc.oppgave4.GPSComputer;
+import no.hvl.dat100ptc.oppgave5.*;
 
 public class CycleComputer extends EasyGraphics {
 
@@ -53,8 +54,8 @@ public class CycleComputer extends EasyGraphics {
 		maxlon = GPSUtils.findMax(GPSUtils.getLongitudes(gpspoints));
 		maxlat = GPSUtils.findMax(GPSUtils.getLatitudes(gpspoints));
 
-		xstep = xstep();
-		ystep = ystep();
+		//xstep = xstep();
+		//ystep = ystep();
 
 		makeWindow("Cycle Computer", 
 				2 * MARGIN + ROUTEMAPXSIZE,
@@ -66,9 +67,9 @@ public class CycleComputer extends EasyGraphics {
 
 	
 	public void bikeRoute() {
-
-		throw new UnsupportedOperationException(TODO.method());
-
+		ShowRoute bikeMap= new ShowRoute();
+		bikeMap.showRouteMap(650);
+		
 	}
 
 	public double xstep() {

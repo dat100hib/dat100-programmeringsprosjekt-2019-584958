@@ -73,9 +73,7 @@ public class ShowRoute extends EasyGraphics {
 			
 			//skriver man ut en grønn sirkel og en rød når man går nedover.
 			if (i==0) { 
-				setColor(0,0,255);
-			} else if (i==gpspoints.length-1) {
-				setColor(0,0,255);
+				setColor(0,255,0);
 			} else if (gpspoints[i].getElevation()>=gpspoints[i-1].getElevation() && i>0 && i!=gpspoints.length) {
 				setColor(0,255,0);
 			} else if (gpspoints[i].getElevation()<gpspoints[i-1].getElevation() && i>0 && i!=gpspoints.length){

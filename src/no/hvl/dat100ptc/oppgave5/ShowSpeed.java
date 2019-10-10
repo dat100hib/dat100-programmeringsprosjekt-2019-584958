@@ -53,8 +53,8 @@ public class ShowSpeed extends EasyGraphics {
 		int x = MARGIN;
 		int xAv = MARGIN;
 		int bredde = 1;
-		int breddeAv = N;
-		int hoydeAv = 2;
+		int breddeAvg = N;
+		int hoydeAvg = 2;
 		int mellomrom = 2;
 		int hoyde = 0;
 		int averageSpeed = 0;
@@ -67,9 +67,9 @@ public class ShowSpeed extends EasyGraphics {
 				x+=mellomrom;
 			}
 		}
-		breddeAv = x-xAv;
+		breddeAvg = x-xAv;
 		averageSpeed = (int)((averageSpeed/N)+0.5);
 		setColor(0,100,100);
-		fillRectangle(xAv,ybase-averageSpeed, breddeAv , hoydeAv);
+		fillRectangle(xAv,ybase-averageSpeed, breddeAvg , hoydeAvg);
 	}
 }
