@@ -10,7 +10,6 @@ import no.hvl.dat100ptc.oppgave3.GPSUtils;
 public class GPSComputer {
 	
 	private static GPSPoint[] gpspoints;
-	
 	public GPSComputer(String filename) {
 		GPSData gpsdata = GPSDataFileReader.readGPSFile(filename);
 		gpspoints = gpsdata.getGPSPoints();
