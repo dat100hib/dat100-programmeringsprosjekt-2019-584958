@@ -66,6 +66,7 @@ public class GPSComputer {
 	}
 	
 	public double maxSpeed() {
+		//bruker medtoden findMax som tar inn en tabell med double og returnerer det største tallet.
 		return GPSUtils.findMax(speeds());
 	}
 
