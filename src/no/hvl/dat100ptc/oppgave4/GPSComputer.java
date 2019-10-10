@@ -66,26 +66,12 @@ public class GPSComputer {
 	}
 	
 	public double maxSpeed() {
-		double maxspeed = 0;
-		double [] speed = speeds();
-		for (int i = 0; i<speed.length; i++) {
-			maxspeed=Math.max(maxspeed, speed[i]);
-		}
-		return maxspeed;
+		return GPSUtils.findMax(speeds());
 	}
 
 	public double averageSpeed() {
 		return totalDistance()/totalTime()*3.6;
 	}
-
-	/*
-	 * bicycling, <10 mph, leisure, to work or for pleasure 4.0 bicycling,
-	 * general 8.0 bicycling, 10-11.9 mph, leisure, slow, light effort 6.0
-	 * bicycling, 12-13.9 mph, leisure, moderate effort 8.0 bicycling, 14-15.9
-	 * mph, racing or leisure, fast, vigorous effort 10.0 bicycling, 16-19 mph,
-	 * racing/not drafting or >19 mph drafting, very fast, racing general 12.0
-	 * bicycling, >20 mph, racing, not drafting 16.0
-	 */
 
 	// conversion factor m/s to miles per hour
 	public static double MS = 2.236936;
