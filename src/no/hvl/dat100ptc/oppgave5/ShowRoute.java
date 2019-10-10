@@ -11,8 +11,8 @@ import no.hvl.dat100ptc.oppgave4.GPSComputer;
 public class ShowRoute extends EasyGraphics {
 
 	private static int MARGIN = 50;
-	private static int MAPXSIZE = 800;
-	private static int MAPYSIZE = 800;
+	private static int MAPXSIZE = 600;
+	private static int MAPYSIZE = 600;
 
 	private GPSPoint[] gpspoints;
 	private static GPSComputer gpscomputer;
@@ -58,40 +58,21 @@ public class ShowRoute extends EasyGraphics {
 	}
 
 	public void showRouteMap(int ybase) {
-		//hva skal man bruke ystep og xstep til?
 		int diameter = 3;
-		int MARGIN=80;
-		int x,y;
-		
-		//ystep();
+		int x,y,xprev=0,yprev=0;
 		
 		
 		double minlat = GPSUtils.findMin(GPSUtils.getLatitudes(gpspoints));
-		double maxlat = GPSUtils.findMax(GPSUtils.getLatitudes(gpspoints));
-		
-		double maxlon = GPSUtils.findMax(GPSUtils.getLongitudes(gpspoints));
 		double minlon = GPSUtils.findMin(GPSUtils.getLongitudes(gpspoints));
 		
 		
 		for (int i = 0; i<gpspoints.length; i++) {
-			//Finner ut av hvilke inkrementer som må ganges til den x verdien og y verdein
-			//slik at de er innenfor bildet på 800 * 800.
-			int inkrementX=100;
-			while ((((maxlon*(maxlon-minlon)/MAPXSIZE*xstep())+MARGIN)*inkrementX)<MAPXSIZE) {
-				inkrementX-=1;
-			}
-			int inkrementY=100;
-			while ((500-(maxlat*(maxlat-minlat)/MAPYSIZE*ystep())*inkrementY)<MAPYSIZE) {
-				inkrementY-=1;
-			}
-			//Finner x og y verdi gjennom å gange høyseste verdi for punktet med latituden i punktet
-			//minus laveste punkt for å ha en null verdi. Resten var for å få det interaktivt og ganget med inkrement.
-			x=(int)((maxlon*(gpspoints[i].getLongitude()-minlon)/MAPXSIZE*xstep())*inkrementX);
-			y=(int)((maxlat*(gpspoints[i].getLatitude()-minlat)/MAPYSIZE*ystep()*inkrementY));
 			
-			//når man begynner og slutter reisen får man en blå dott. Når man går oppover
+			x = MARGIN+(int) ((gpspoints[i].getLongitude()-minlon) * xstep());
+			y = (int) (ybase-(gpspoints[i].getLatitude()-minlat) * ystep());
+			
+			
 			//skriver man ut en grønn sirkel og en rød når man går nedover.
-			
 			if (i==0) { 
 				setColor(0,0,255);
 			} else if (i==gpspoints.length-1) {
@@ -102,7 +83,15 @@ public class ShowRoute extends EasyGraphics {
 				setColor(255,0,0);
 			}
 			
-			fillCircle(x+MARGIN,200-y, diameter);
+			if (i==0) {
+				xprev=x;
+				yprev=y;
+			}
+			
+			drawLine(x, y, xprev, yprev);
+			xprev = x;
+			yprev = y;
+			fillCircle(x,y, diameter);
 		}
 		
 	}

@@ -8,9 +8,7 @@ import no.hvl.dat100ptc.oppgave1.GPSPoint;
 public class GPSUtils {
 
 	public static double findMax(double[] da) {
-
 		double max = da[0];
-		
 		for (double d : da) {
 			max = Math.max(max, d);
 		}
@@ -18,7 +16,6 @@ public class GPSUtils {
 	}
 
 	public static double findMin(double[] da) {
-
 		double min=da[0];
 		for (double d:da) {
 			min = Math.min(d, min);
@@ -95,7 +92,6 @@ public class GPSUtils {
 		hhStr = hh < 10 ? ("0"+hh) : (""+hh);
 		mmStr = mm < 10 ? ("0"+mm) : (""+mm);
 		ssStr = ss < 10 ? ("0"+ss) : (""+ss);
-		
 		
 		timestr=hhStr+TIMESEP+mmStr+TIMESEP+ssStr;
 		
