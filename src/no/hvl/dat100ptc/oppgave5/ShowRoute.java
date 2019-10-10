@@ -15,8 +15,7 @@ public class ShowRoute extends EasyGraphics {
 	private static int MAPYSIZE = 600;
 
 	private GPSPoint[] gpspoints;
-	private static GPSComputer gpscomputer;
-	//Satt private GPSComputer gpscomputer; til static
+	private GPSComputer gpscomputer;
 	public ShowRoute() {
 
 		String filename = JOptionPane.showInputDialog("GPS data filnavn: ");
@@ -104,12 +103,12 @@ public class ShowRoute extends EasyGraphics {
 		setFont("Courier",12);
 		
 		drawString("=========================================",TEXTDISTANCE,20 );
-		drawString("Total Time"+"\t\t\t\t\t\t\t"+":"+ GPSUtils.formatTime(GPSComputer.totalTime()),TEXTDISTANCE,30 );
-		drawString("Total distance"+"\t\t\t"+":"+"\t\t"+String.format("%.2f", GPSComputer.totalDistance()/1000)+" km",TEXTDISTANCE,40 );
-		drawString("Total elevation"+"\t\t"+":"+"\t\t"+String.format("%.2f", GPSComputer.totalElevation())+" m",TEXTDISTANCE,50 );
-		drawString("Max speed"+"\t\t\t\t\t\t\t\t"+":"+"\t\t"+String.format("%.2f", GPSComputer.maxSpeed())+" km/t",TEXTDISTANCE,60 );
-		drawString("Average speed"+"\t\t\t\t"+":"+"\t\t"+String.format("%.2f", GPSComputer.averageSpeed())+" km/t",TEXTDISTANCE,70 );
-		drawString("Energy"+"\t\t\t\t\t\t\t\t\t\t\t"+":"+"\t\t"+String.format("%.2f", GPSComputer.totalKcal(80))+" kcal",TEXTDISTANCE,80 );
+		drawString("Total Time"+"\t\t\t\t\t\t\t"+":"+ GPSUtils.formatTime(gpscomputer.totalTime()),TEXTDISTANCE,30 );
+		drawString("Total distance"+"\t\t\t"+":"+"\t\t"+String.format("%.2f", gpscomputer.totalDistance()/1000)+" km",TEXTDISTANCE,40 );
+		drawString("Total elevation"+"\t\t"+":"+"\t\t"+String.format("%.2f", gpscomputer.totalElevation())+" m",TEXTDISTANCE,50 );
+		drawString("Max speed"+"\t\t\t\t\t\t\t\t"+":"+"\t\t"+String.format("%.2f", gpscomputer.maxSpeed())+" km/t",TEXTDISTANCE,60 );
+		drawString("Average speed"+"\t\t\t\t"+":"+"\t\t"+String.format("%.2f", gpscomputer.averageSpeed())+" km/t",TEXTDISTANCE,70 );
+		drawString("Energy"+"\t\t\t\t\t\t\t\t\t\t\t"+":"+"\t\t"+String.format("%.2f", gpscomputer.totalKcal(80))+" kcal",TEXTDISTANCE,80 );
 		drawString("=========================================",TEXTDISTANCE,90 );
 		
 	}

@@ -9,7 +9,7 @@ import no.hvl.dat100ptc.oppgave3.GPSUtils;
 
 public class GPSComputer {
 	
-	private static GPSPoint[] gpspoints;
+	private GPSPoint[] gpspoints;
 	public GPSComputer(String filename) {
 		GPSData gpsdata = GPSDataFileReader.readGPSFile(filename);
 		gpspoints = gpsdata.getGPSPoints();
@@ -27,7 +27,7 @@ public class GPSComputer {
 	//i prosjektet. Gjorde private static GPSPoint[] gpspoints; på linje 11 static.
 	
 	// bereger total distances (i meter)
-	public static double totalDistance() {
+	public double totalDistance() {
 		double distance = 0;
 		for (int i = 0; i<gpspoints.length-1; i++) {
 			distance += GPSUtils.distance(gpspoints[i], gpspoints[i+1]);
@@ -37,7 +37,7 @@ public class GPSComputer {
 	}
 
 	// beregner total høydemeter (i meter)
-	public static double totalElevation() {
+	public double totalElevation() {
 		//hvis det neste gps punktet er er mindre enn det første vil
 		//vi sette elevation lik den høyeste elevation til gps punktene.
 		double elevation = 0;
@@ -51,13 +51,13 @@ public class GPSComputer {
 	}
 
 	// beregner total tid for hele turen (i sekunder)
-	public static int totalTime() {
+	public int totalTime() {
 		//returnerer sluttid minus starttid for å får total tid.
 		return (gpspoints[gpspoints.length-1].getTime()-gpspoints[0].getTime());
 	}
 		
 	// beregner gjennomsnitshastighet mellom hver av gps punktene
-	public static double[] speeds() {
+	public double[] speeds() {
 		double [] speedsTab = new double [gpspoints.length-1];
 		for (int i = 0; i<gpspoints.length-1; i++) {
 			speedsTab[i]=GPSUtils.speed(gpspoints[i],gpspoints[i+1]);
@@ -65,7 +65,7 @@ public class GPSComputer {
 		return speedsTab;
 	}
 	
-	public static double maxSpeed() {
+	public double maxSpeed() {
 		double maxspeed = 0;
 		double [] speed = speeds();
 		for (int i = 0; i<speed.length; i++) {
@@ -74,7 +74,7 @@ public class GPSComputer {
 		return maxspeed;
 	}
 
-	public static double averageSpeed() {
+	public double averageSpeed() {
 		return totalDistance()/totalTime()*3.6;
 	}
 
@@ -91,7 +91,7 @@ public class GPSComputer {
 	public static double MS = 2.236936;
 
 	// beregn kcal gitt weight og tid der kjøres med en gitt hastighet
-	public static double kcal(double weight, int secs, double speed) {
+	public double kcal(double weight, int secs, double speed) {
 
 		double kcal;
 
@@ -119,7 +119,7 @@ public class GPSComputer {
 		return kcal;
 	}
 //må snakke med folk på labben om hvorfor denne er feil.
-	public static double totalKcal(double weight) {
+	public double totalKcal(double weight) {
 		return kcal(weight, totalTime(), averageSpeed());
 	}
 	
