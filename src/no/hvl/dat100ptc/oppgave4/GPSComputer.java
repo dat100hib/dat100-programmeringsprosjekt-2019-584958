@@ -82,7 +82,6 @@ public class GPSComputer {
 
 		double kcal;
 
-		// MET: Metabolic equivalent of task angir (kcal x kg-1 x h-1)
 		//kcal = MET * bodyweight(kg) * time (h)
 		double met = 0;		
 		double speedmph = speed * MS;
@@ -116,12 +115,12 @@ public class GPSComputer {
 		//usikker på det hvordan man skal gjøre det med kcal ettersom
 		//det ikke funker.
 		System.out.println("==============================================");
-		System.out.println("Total Time"+"\t"+":"+"     "+ GPSUtils.formatTime(totalTime()));
-		System.out.println("Total distance"+"\t"+":"+"\t"+String.format("%.2f", totalDistance()/1000)+"km");
-		System.out.println("Total elevation"+"\t"+":"+"\t"+String.format("%.2f", totalElevation())+"m");
-		System.out.println("Max speed"+"\t"+":"+"\t"+String.format("%.2f", maxSpeed())+"km/t");
-		System.out.println("Average speed"+"\t"+":"+"\t"+String.format("%.2f", averageSpeed())+"km/t");
-		System.out.println("Energy"+"\t"+"\t"+":"+"\t"+String.format("%.2f", totalKcal(WEIGHT))+"kcal");
+		System.out.println("Total Time"+"\t:     "+ GPSUtils.formatTime(totalTime()));
+		System.out.println("Total distance"+"\t:\t"+String.format("%.2f", totalDistance()/1000)+"km");
+		System.out.println("Total elevation"+"\t:\t"+String.format("%.2f", totalElevation())+"m");
+		System.out.println("Max speed"+"\t:\t"+String.format("%.2f", maxSpeed())+"km/t");
+		System.out.println("Average speed"+"\t:\t"+String.format("%.2f", averageSpeed())+"km/t");
+		System.out.println("Energy"+"\t\t:\t"+String.format("%.2f", totalKcal(WEIGHT))+"kcal");
 		System.out.println("==============================================");
 		
 		
