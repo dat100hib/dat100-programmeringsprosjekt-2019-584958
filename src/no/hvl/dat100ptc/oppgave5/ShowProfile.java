@@ -49,19 +49,23 @@ public class ShowProfile extends EasyGraphics {
 		//mellomrom variablen er mellomrom mellom hver soyle.
 		//hoyden til soylen blir definert i for loopen. fyller hvert rektangel
 		//for hver soyle gitt punktet gpspoints[i].
-		int x = MARGIN;
-		int bredde = 1;
-		int mellomrom = 2;
-		int hoyde = 0;
-		setColor(0, 0, 255);
+		double maxEle = 0;
+		double minEle = 0;
 		for (int i = 0; i<gpspoints.length; i++) {
-			hoyde =(int) gpspoints[i].getElevation();
-			if (hoyde>0) {
-				fillRectangle(x,ybase-hoyde, bredde, hoyde);
-				x+=mellomrom;
-			} else {
-				
-			}
+			maxEle = Math.max(maxEle, gpspoints[i].getElevation());
+			minEle = Math.min(minEle, gpspoints[i].getElevation());
+		}
+		double eleStep = MAXBARHEIGHT/(maxEle-minEle);
+		
+		setColor(0, 0, 255);
+		int y, x=MARGIN;
+		int mellomrom = 2;
+		int bredde = 1;
+		for (int i = 0; i<gpspoints.length; i++) {
+			y = (int) ((gpspoints[i].getElevation()-minEle)*eleStep);
+			System.out.println(y);
+			fillRectangle(x,ybase-y, bredde, y);
+			x += mellomrom;
 		}
 	}
 }
