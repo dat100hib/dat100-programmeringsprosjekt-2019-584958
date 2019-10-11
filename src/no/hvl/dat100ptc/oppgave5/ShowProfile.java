@@ -50,7 +50,7 @@ public class ShowProfile extends EasyGraphics {
 		//hoyden til soylen blir definert i for loopen. fyller hvert rektangel
 		//for hver soyle gitt punktet gpspoints[i].
 		double maxEle = 0;
-		double minEle = 0;
+		double minEle = 1000;
 		for (int i = 0; i<gpspoints.length; i++) {
 			maxEle = Math.max(maxEle, gpspoints[i].getElevation());
 			minEle = Math.min(minEle, gpspoints[i].getElevation());
