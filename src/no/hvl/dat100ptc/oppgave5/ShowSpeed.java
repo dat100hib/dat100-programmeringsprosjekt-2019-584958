@@ -47,8 +47,8 @@ public class ShowSpeed extends EasyGraphics {
 		//farten i gpspoints[i]. legger sammen hver hatighet til averageSpeed variabelen
 		//for aa senere regne gjennomsnittshastigheten. 
 		
-		System.out.println("Angi tidsskalering i tegnevinduet ...");
-		int timescaling = Integer.parseInt(getText("Tidsskalering"));
+		//System.out.println("Angi tidsskalering i tegnevinduet ...");
+		//int timescaling = Integer.parseInt(getText("Tidsskalering"));
 		
 		double [] speed = gpscomputer.speeds();
 		double maxSpeed = Double.MIN_VALUE;
@@ -57,6 +57,7 @@ public class ShowSpeed extends EasyGraphics {
 							// minSpeed = Double.MAX_VALUE;
 		for (int i = 0; i<speed.length; i++) {
 			maxSpeed = Math.max(maxSpeed, speed[i]);
+			minSpeed = Math.min(minSpeed, speed[i]);
 		}
 		double speedStep = BARHEIGHT/(maxSpeed-minSpeed);
 			
