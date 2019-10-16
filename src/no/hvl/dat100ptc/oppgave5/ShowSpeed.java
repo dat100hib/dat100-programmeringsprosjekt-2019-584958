@@ -51,18 +51,19 @@ public class ShowSpeed extends EasyGraphics {
 		int timescaling = Integer.parseInt(getText("Tidsskalering"));
 		
 		double [] speed = gpscomputer.speeds();
-		double maxSpeed = 0;
-		double minSpeed = 0;
+		double maxSpeed = Double.MIN_VALUE;
+		double minSpeed = 0; // gaar ut i fra at minste hastighet er naar man staar stille
+							// dersom man vil gaa ut i fra den minste hastigeten kan man endre
+							// minSpeed = Double.MAX_VALUE;
 		for (int i = 0; i<speed.length; i++) {
 			maxSpeed = Math.max(maxSpeed, speed[i]);
-			minSpeed = Math.min(minSpeed, speed[i]);
 		}
 		double speedStep = BARHEIGHT/(maxSpeed-minSpeed);
 			
 		int x = MARGIN;
 		int xAv = MARGIN;
 		int bredde = 1;
-		int breddeAvg = N;
+		int breddeAvg;
 		int hoydeAvg = 2;
 		int mellomrom = 2;
 		int y = 0;
@@ -73,8 +74,10 @@ public class ShowSpeed extends EasyGraphics {
 			y = (int) ((speed[i]-minSpeed)*speedStep);
 			fillRectangle(x,ybase-y, bredde, y);
 			x += mellomrom;
-			averageSpeed+=y;
+			averageSpeed+=y; //legger inn hver hoyde for y/hver hastiget
 		}
+		
+		//Lager et rektangel for gjennsomsnittshøyden på alle soylene.
 		breddeAvg = x-xAv;
 		averageSpeed = (int)((averageSpeed/N)+0.5);
 		setColor(0,100,100);

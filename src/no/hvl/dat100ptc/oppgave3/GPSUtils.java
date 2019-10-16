@@ -104,11 +104,11 @@ public class GPSUtils {
 
 		//if funksjon som setter str lik et avrundet tall med to desimaler
 		//med x antall mellomrom forran tallet.
-		String str = String.format("%1$10.2f", d);		
+		String str = String.format("%1$10.2f", d);	
 		String [] strTab = str.split("");
 		strTab[str.indexOf(",")]=".";
 		str=String.join("", strTab);
-		
+
 		return str;
 	}
 }

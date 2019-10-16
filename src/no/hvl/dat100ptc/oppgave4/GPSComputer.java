@@ -23,9 +23,6 @@ public class GPSComputer {
 		return this.gpspoints;
 	}
 	
-	//Gjorde de fleste av metodene under static for aa kunne referere til dem sener
-	//i prosjektet. Gjorde private static GPSPoint[] gpspoints; på linje 11 static.
-	
 	// bereger total distances (i meter)
 	public double totalDistance() {
 		double distance = 0;
@@ -104,16 +101,14 @@ public class GPSComputer {
 		
 		return kcal;
 	}
-//må snakke med folk på labben om hvorfor denne er feil.
+	
 	public double totalKcal(double weight) {
 		return kcal(weight, totalTime(), averageSpeed());
 	}
 	
 	private static double WEIGHT = 80.0;
-	//String.format("%1$10.2f", d)
+	
 	public void displayStatistics() {
-		//usikker på det hvordan man skal gjøre det med kcal ettersom
-		//det ikke funker.
 		System.out.println("==============================================");
 		System.out.println("Total Time"+"\t:     "+ GPSUtils.formatTime(totalTime()));
 		System.out.println("Total distance"+"\t:"+String.format("%1$12.2f", totalDistance()/1000)+"km");

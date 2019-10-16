@@ -22,7 +22,7 @@ public class GPSData {
 
 		boolean inserted = false;
 		//Hvis antall er større enn lengden på tabellen vil den ikke sette 
-		//noe inn i den. Setter gpspoint inn i tabellen på gitt plass lik antall.
+		//noe inn i tabellen. Setter gpspoint inn i tabellen på gitt plass lik antall.
 		//inkrementerer antall, slik at neste gpspoint blir satt i riktig pos.
 		if (gpspoints.length>antall) {
 			gpspoints[antall]= gpspoint;
@@ -33,11 +33,9 @@ public class GPSData {
 	}
 	//Lager definerer et nytt punkt som skal lagres i gpspoints tabellen og returnerer true hvis det skjer.
 	public boolean insert(String time, String latitude, String longitude, String elevation) {
-
 		GPSPoint gpspoint;
 		gpspoint= GPSDataConverter.convert(time, latitude, longitude, elevation);
 		return insertGPS(gpspoint);
-	
 	}
 
 	// Skriver ut verdiene til objektene i gpspoints ved hjelp av toString metoden til GPSPoint klassen.

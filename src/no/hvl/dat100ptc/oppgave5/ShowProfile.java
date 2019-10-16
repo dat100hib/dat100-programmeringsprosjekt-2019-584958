@@ -44,27 +44,29 @@ public class ShowProfile extends EasyGraphics {
 
 	public void showHeightProfile(int ybase) {
 
-		// ybase indicates the position on the y-axis where the columns should start
-		//Gitt den startveri x for hvor den skal begynne fra venste. bredde paa soylene.
+		//Gitt den startverdi x for hvor den skal begynne fra venste. bredde paa soylene.
 		//mellomrom variablen er mellomrom mellom hver soyle.
-		//hoyden til soylen blir definert i for loopen. fyller hvert rektangel
+		//hoyden til soylen blir definert i for loopen. Fyller hvert rektangel
 		//for hver soyle gitt punktet gpspoints[i].
-		double maxEle = 0;
-		double minEle = 1000;
+		
+		double maxEle = Double.MIN_VALUE;
+		double minEle = 0; //setter lik 0 for aa gaa ut i fra Moh.
+							//kan gaa ut i fra laveste hoyde som minste value
+							// da setter man minEle = Double.MAX_VALUE;
 		for (int i = 0; i<gpspoints.length; i++) {
 			maxEle = Math.max(maxEle, gpspoints[i].getElevation());
 			minEle = Math.min(minEle, gpspoints[i].getElevation());
 		}
+		//For aa finne forholdet mellom MAXBARHEIGHT og differansen mellom min og max elevation.
 		double eleStep = MAXBARHEIGHT/(maxEle-minEle);
 		
-		setColor(0, 0, 255);
+		setColor(0, 0, 255); //definerer hvilke farge det skal være på soylene
 		int y, x=MARGIN;
-		int mellomrom = 2;
+		int mellomrom = 2; //mellomrom fra en søyle til neste
 		int bredde = 1;
 		for (int i = 0; i<gpspoints.length; i++) {
-			y = (int) ((gpspoints[i].getElevation()-minEle)*eleStep);
-			System.out.println(y);
-			fillRectangle(x,ybase-y, bredde, y);
+			y = (int) ((gpspoints[i].getElevation())*eleStep);
+			fillRectangle(x,ybase-y, bredde, y); //- ybase for aa ha et fast startspunkt for soylene.
 			x += mellomrom;
 		}
 	}

@@ -19,9 +19,7 @@ public class GPSPoint {
 	}
 
 	public int getTime() {
-		
 		return this.time;
-		
 	}
 
 	public void setTime(int time) {
